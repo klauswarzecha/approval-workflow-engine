@@ -61,6 +61,8 @@ The following features are intentionally excluded or simplified:
 - Extensive error taxonomy
 - UI layer
 
+The MVP does not include a complex RBAC model. It still enforces simple resource-based authorization based on requester ownership and approver assignment.
+
 ---
 
 ## Rationale
