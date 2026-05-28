@@ -30,7 +30,7 @@ def _validate_current_step(
     if current_step.status != StepStatus.PENDING:
         raise InvalidWorkflowState("Current approval step is not pending.")
 
-    if str(actor_id) != str(current_step.approver_id):
+    if actor_id != current_step.approver_id:
         raise UnauthorizedWorkflowAction("Actor is not assigned to approve this step.")
 
     return approval_request.current_step_index
@@ -43,7 +43,7 @@ def approve_step(
     decided_at: datetime,
 ) -> ApprovalRequest:
     """Approve the current workflow step and advance the request if applicable."""
-    _, current_step_index = _validate_current_step(approval_request, step_id, actor_id)
+    current_step_index = _validate_current_step(approval_request, step_id, actor_id)
 
     updated_request = approval_request.model_copy(deep=True)
     current_step = updated_request.steps[current_step_index]
