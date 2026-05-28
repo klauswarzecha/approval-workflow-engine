@@ -21,7 +21,7 @@ class ApprovalStep(BaseModel):
     order: int
     approver_id: int
     status: StepStatus = StepStatus.PENDING
-    decided_at = datetime | None = None
+    decided_at: datetime | None = None
     comment: str | None = None
 
 
