@@ -33,7 +33,7 @@ def _validate_current_step(
     if str(actor_id) != str(current_step.approver_id):
         raise UnauthorizedWorkflowAction("Actor is not assigned to approve this step.")
 
-    return approval_request, approval_request.current_step_index
+    return approval_request.current_step_index
 
 
 def approve_step(
