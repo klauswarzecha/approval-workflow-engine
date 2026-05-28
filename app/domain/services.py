@@ -7,8 +7,7 @@ def approve_step(
     step_id: str,
     actor_id: str,
     decided_at: datetime,
-) -> ApprovalRequest:
-    ...
+) -> ApprovalRequest: ...
 
 
 def reject_step(
@@ -17,6 +16,4 @@ def reject_step(
     actor_id: str,
     comment: str,
     decided_at: datetime,
-) -> ApprovalRequest:
-    ...
-
+) -> ApprovalRequest: ...
