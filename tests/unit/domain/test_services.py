@@ -49,9 +49,7 @@ def test_approve_first_step_moves_to_next_step():
 
 
 def test_approve_final_step_approves_whole_request():
-    request = make_request(
-        [ApprovalStep(step_id="step-1", order=1, approver_id=1)]
-    )
+    request = make_request([ApprovalStep(step_id="step-1", order=1, approver_id=1)])
     decided_at = datetime(2026, 5, 28, 13, 0, 0)
 
     result = approve_step(request, "step-1", "1", decided_at)

@@ -18,8 +18,9 @@ def _validate_current_step(
     if approval_request.status != RequestStatus.PENDING:
         raise InvalidWorkflowState("Approval request is not pending.")
 
-    if approval_request.current_step_index < 0 or approval_request.current_step_index >= len(
-        approval_request.steps
+    if (
+        approval_request.current_step_index < 0
+        or approval_request.current_step_index >= len(approval_request.steps)
     ):
         raise StepNotFound("Current approval step was not found.")
 
