@@ -9,3 +9,11 @@ dependencies = [
     "mangum>=0.21.0",
     "pydantic>=2.13.4",
 ]
+
+[dependency-groups]
+dev = [
+    "freezegun>=1.5.5",
+    "moto>=5.2.1",
+    "pytest>=9.0.3",
+    "ruff>=0.15.14",
+]
