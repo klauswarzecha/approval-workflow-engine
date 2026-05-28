@@ -13,7 +13,7 @@ def _validate_current_step(
     approval_request: ApprovalRequest,
     step_id: str,
     actor_id: str,
-) -> tuple[ApprovalRequest, int]:
+) -> int:
     """Validate workflow request and return the current step index."""
     if approval_request.status != RequestStatus.PENDING:
         raise InvalidWorkflowState("Approval request is not pending.")
@@ -71,7 +71,7 @@ def reject_step(
     if not comment or not comment.strip():
         raise RejectCommentRequired("Rejection requires a non-empty comment.")
 
-    _, current_step_index = _validate_current_step(approval_request, step_id, actor_id)
+    current_step_index = _validate_current_step(approval_request, step_id, actor_id)
 
     updated_request = approval_request.model_copy(deep=True)
     current_step = updated_request.steps[current_step_index]
