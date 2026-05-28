@@ -1,3 +1,7 @@
+from datetime import datetime
+from models import ApprovalRequest
+
+
 def approve_step(
     approval_request: ApprovalRequest,
     step_id: str,
@@ -15,5 +19,4 @@ def reject_step(
     decided_at: datetime,
 ) -> ApprovalRequest:
     ...
-    
-        
+
