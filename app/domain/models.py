@@ -19,7 +19,7 @@ class StepStatus(StrEnum):
 class ApprovalStep(BaseModel):
     step_id: str
     order: int
-    approver_id: int
+    approver_id: str
     status: StepStatus = StepStatus.PENDING
     decided_at: datetime | None = None
     comment: str | None = None
