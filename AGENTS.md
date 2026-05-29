@@ -36,3 +36,8 @@
 - Keep domain logic independent from API, persistence, and infrastructure.
 - Do not introduce new frameworks or services without an ADR.
 - ADRs are authoritative for architectural decisions.
+
+## Dependencies
+
+- Use uv for dependency management.
+- Do not use pip commands.
