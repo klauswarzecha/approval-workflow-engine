@@ -30,8 +30,8 @@ def make_request(steps, current_step_index=0):
 def test_approve_first_step_moves_to_next_step():
     request = make_request(
         [
-            ApprovalStep(step_id="step-1", order=1, approver_id=1),
-            ApprovalStep(step_id="step-2", order=2, approver_id=2),
+            ApprovalStep(step_id="step-1", order=1, approver_id="1"),
+            ApprovalStep(step_id="step-2", order=2, approver_id="2"),
         ]
     )
     decided_at = datetime(2026, 5, 28, 12, 30, 0)
@@ -49,7 +49,7 @@ def test_approve_first_step_moves_to_next_step():
 
 
 def test_approve_final_step_approves_whole_request():
-    request = make_request([ApprovalStep(step_id="step-1", order=1, approver_id=1)])
+    request = make_request([ApprovalStep(step_id="step-1", order=1, approver_id="1")])
     decided_at = datetime(2026, 5, 28, 13, 0, 0)
 
     result = approve_step(request, "step-1", "1", decided_at)
@@ -62,7 +62,7 @@ def test_approve_final_step_approves_whole_request():
 
 
 def test_wrong_approver_cannot_approve():
-    request = make_request([ApprovalStep(step_id="step-1", order=1, approver_id=1)])
+    request = make_request([ApprovalStep(step_id="step-1", order=1, approver_id="1")])
 
     with pytest.raises(UnauthorizedWorkflowAction):
         approve_step(request, "step-1", "2", datetime(2026, 5, 28, 13, 0, 0))
@@ -71,8 +71,8 @@ def test_wrong_approver_cannot_approve():
 def test_approving_non_current_step_fails():
     request = make_request(
         [
-            ApprovalStep(step_id="step-1", order=1, approver_id=1),
-            ApprovalStep(step_id="step-2", order=2, approver_id=2),
+            ApprovalStep(step_id="step-1", order=1, approver_id="1"),
+            ApprovalStep(step_id="step-2", order=2, approver_id="2"),
         ]
     )
 
@@ -81,14 +81,14 @@ def test_approving_non_current_step_fails():
 
 
 def test_rejecting_requires_non_empty_comment():
-    request = make_request([ApprovalStep(step_id="step-1", order=1, approver_id=1)])
+    request = make_request([ApprovalStep(step_id="step-1", order=1, approver_id="1")])
 
     with pytest.raises(RejectCommentRequired):
         reject_step(request, "step-1", "1", "   ", datetime(2026, 5, 28, 13, 0, 0))
 
 
 def test_rejection_marks_request_as_rejected():
-    request = make_request([ApprovalStep(step_id="step-1", order=1, approver_id=1)])
+    request = make_request([ApprovalStep(step_id="step-1", order=1, approver_id="1")])
     decided_at = datetime(2026, 5, 28, 13, 30, 0)
 
     result = reject_step(request, "step-1", "1", "Not acceptable", decided_at)
