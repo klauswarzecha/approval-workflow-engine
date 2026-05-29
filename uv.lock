@@ -37,6 +37,7 @@ name = "approval-workflow-engine"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "boto3" },
     { name = "fastapi" },
     { name = "mangum" },
     { name = "pydantic" },
@@ -52,6 +53,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "boto3", specifier = ">=1.43.16" },
     { name = "fastapi", specifier = ">=0.136.3" },
     { name = "mangum", specifier = ">=0.21.0" },
     { name = "pydantic", specifier = ">=2.13.4" },
