@@ -14,7 +14,7 @@ from app.domain.services import approve_step, reject_step
 def make_request(steps, current_step_index=0):
     now = datetime(2026, 5, 28, 12, 0, 0)
     return ApprovalRequest(
-        request_od="req-1",
+        request_id="req-1",
         requester_id="user-1",
         title="Approve expense",
         payload={"amount": 100},

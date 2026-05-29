@@ -1,22 +1,31 @@
+"""Domain models for approval workflows."""
+
 from datetime import datetime
 from enum import StrEnum
-from pydantic import BaseModel
 from typing import Any
+
+from pydantic import BaseModel
 
 
 class RequestStatus(StrEnum):
+    """Workflow-level request statuses."""
+
     PENDING = "PENDING"
     APPROVED = "APPROVED"
     REJECTED = "REJECTED"
 
 
 class StepStatus(StrEnum):
+    """Approval step statuses."""
+
     PENDING = "PENDING"
     APPROVED = "APPROVED"
     REJECTED = "REJECTED"
 
 
 class ApprovalStep(BaseModel):
+    """A single sequential approval step."""
+
     step_id: str
     order: int
     approver_id: str
@@ -26,7 +35,9 @@ class ApprovalStep(BaseModel):
 
 
 class ApprovalRequest(BaseModel):
-    request_od: str
+    """An approval workflow aggregate."""
+
+    request_id: str
     requester_id: str
     title: str
     payload: dict[str, Any]
