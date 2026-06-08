@@ -12,9 +12,9 @@ variable "project_name" {
 
 variable "tags" {
   type        = map(string)
-  description = "Tags alpplied to all resources via provider default_tags."
+  description = "Tags applied to all resources via provider default_tags."
   default = {
-    Project     = "approval-workflow-engine"
-    ManagedBy   = "opentofu"
+    Project   = "approval-workflow-engine"
+    ManagedBy = "opentofu"
   }
 }
